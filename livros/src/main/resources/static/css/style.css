@@ -1,0 +1,73 @@
+body {
+  background-color: #EED9F7;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  font-weight: 600;
+}
+
+.titulo-white {
+  color: white;
+  margin: 0;
+}
+
+.card {
+  box-shadow:0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: #0056b3;
+  border-color: #004b9a;
+}
+
+.btn-primary:hover {
+  background-color: #003f82;
+  border-color: #00356d;
+}
+
+.btn-success {
+  background-color: #198754;
+  border-color: #157347;
+}
+
+.btn-success:hover {
+  background-color: #146c43;
+}
+
+.container {
+  max-width: 960px;
+}
+
+.btn-carrinho {
+  background-color: #c8a2c8;
+  color: white;
+  border: none;
+  padding: 0.375rem 0.75rem;
+  font-weight: 600;
+}
+
+.btn-carrinho:hover {
+  background-color: #b07bb0;
+  color: white;
+}
+
+
+.card-img-top {
+  width: 150px;      
+  height: 200px;     
+  object-fit: contain; 
+  background-color: white; 
+  margin: 0 auto; 
+  display: block; 
+}
+
+.table-carrinho img {
+  width: 80px;
+  height: 100px;
+  object-fit: contain;
+  background-color: #f3e#8ff;
+  border-radius: 4px;
+}
+
+
