@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("http://localhost:8080/api/livros")
+  fetch("/api/livros")
     .then((resp) => resp.json())
-    .then((livros) => exibirLivros(livros));
+    .then((livros) => exibirLivros(livros))
+    .catch((erro) => console.error("Erro ao buscar livros:", erro));
 });
 
 function exibirLivros(livros) {
@@ -14,20 +15,31 @@ function exibirLivros(livros) {
 
     col.innerHTML = `
       <div class="card h-100">
-        <img src="${livro.capa}" class="card-img-top" alt="${livro.titulo}">
+        <img src="/img/${livro.capa}" class="card-img-top" alt="${livro.titulo}">
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">${livro.titulo}</h5>
+          <p class="card-text">Estoque: ${livro.estoque}</p>
           <p class="card-text">R$ ${livro.preco.toFixed(2)}</p>
-          <button class="btn btn-primary mt-auto" onclick="adicionarAoCarrinho(${encodeURIComponent(JSON.stringify(livro))})">Adicionar ao Carrinho</button>
+          <button class="btn btn-primary mt-auto adicionar-btn" data-livro='${JSON.stringify(livro)}'>
+            Adicionar ao Carrinho
+          </button>
         </div>
       </div>
     `;
+
     container.appendChild(col);
+  });
+
+  // Ativar todos os botões após renderizar
+  document.querySelectorAll(".adicionar-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const livro = JSON.parse(btn.dataset.livro);
+      adicionarAoCarrinho(livro);
+    });
   });
 }
 
-function adicionarAoCarrinho(livroJSON) {
-  const livro = JSON.parse(decodeURIComponent(livroJSON));
+function adicionarAoCarrinho(livro) {
   let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
   const index = carrinho.findIndex((item) => item.id === livro.id);
